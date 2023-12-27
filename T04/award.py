@@ -1,16 +1,31 @@
 # A program that determines which award a person competing in a triathlon will receive
 
-print("This is a program to determine the award you will receive.")
+print("This is a program to determine the award you will receive. To terminate the program, type 'end' when input is requested.")
+
+# defining function to request input
+def request_time(event):
+    time = input(f"Please enter the amount of time in minutes it took to complete the {event} section: ")
+    # while statement to request input until valid
+    while time.isdigit() == False:
+        # if statement in case user request program termination
+        if time.lower() == 'end':
+            print("The program has been terminated as requested.")
+            quit()
+        print("Your input is invalid")
+        time = input(f"Please enter the amount of time in minutes it took to complete the {event} section: ")
+    
+    return int(time)
+
 
 # read the times (in minutes) for all three events of a triathlon
 # swimming
-swimming_time =int(input("Please enter the amount of time in minutes it took to complete the swimming section: "))
+swimming_time = request_time('swimming')
 
 # cycling
-cycling_time =int(input("Please enter the amount of time in minutes it took to complete the cycling section: "))
+cycling_time = request_time('cycling')
 
 # running
-running_time =int(input("Please enter the amount of time in minutes it took to complete the running section: "))
+running_time = request_time('running')
 
 # calculate and display the total time taken to complete the triathlon
 total_time = swimming_time + cycling_time + running_time
