@@ -1,9 +1,27 @@
 # A program to complete several calculations on 3 numbers input by the user.
 
+# Introducing program
+print("This is a program to complete calculations on 3 numbers you input. To terminate the program type 'end' when input is requested.")
+
+# function to request integer
+def request_integer(number):
+    integer = input(f"Please enter your {number} whole number: ")
+    # while statement in case user doesn't type an integer
+    while integer.isdigit() == False:
+        # if statement in case user requests end of program
+        if integer.lower() == 'end':
+            print("The program has been terminated as requested.")
+            quit()
+        print("Your input is not valid.")
+        integer = input(f"Please enter your {number} whole number: ")
+    
+    return int(integer)
+
+
 # request that the user enters 3 different integers
-int1 = int(input("Please enter an integer: "))
-int2 = int(input("Please enter a different integer: "))
-int3 = int(input("Please enter another different integer: "))
+int1 = request_integer('first')
+int2 = request_integer('second')
+int3 = request_integer('third')
 
 # creating a list out of the 3 integers
 list_of_integers = [int1, int2, int3]
