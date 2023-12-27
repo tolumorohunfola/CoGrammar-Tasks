@@ -1,9 +1,21 @@
 # A program to print out a statement based on the age input by the user.
 
-# request and store user's age
-age = int(input("Please enter your age: "))
+print("This is a program to provide output based on age. If you would like to terminate the program, please type 'end' when input is requested.")
+# request and store user's age unless invalid
+age = input("Please enter your age: ")
+while age.isdigit() == False:
+    #if statement to terminate program if requested
+    if age.lower() == 'end':
+        print("The program has been terminated as requested.")
+        quit()
+    # flagging that input is invalid and requesting new age input
+    print("Your input is not valid.")
+    age = input("Please enter your age: ")
 
-# assuming user can not be over 100
+# casting age to input
+age = int(age)
+
+# assuming user can not be over 100 and printing statements based on age of user
 if age > 100:
     print("Sorry, you're dead.")
 elif age >= 65:
