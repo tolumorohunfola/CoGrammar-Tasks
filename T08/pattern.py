@@ -13,18 +13,26 @@ import math # to round down using math.floor()
 # **        2 - 8
 # *         1 - 9
 
-print("Thank you for choosing to use our program to see your pattern!")
+print("Thank you for choosing to use our program to see your pattern! To terminate the program, type 'end' when your input is required.")
 
 # requests the user's choice of how long the pattern will be.
-upper_limit_of_range = int(input("Please enter a single digit, odd number between and including 1 and 9 which will be the number of lines that the pattern is: ")) # *will try error handling when I refactor
+upper_limit_of_range = input("Please enter a single digit, odd number between and including 1 and 9 which will be the number of lines that the pattern is: ") # *will try error handling when I refactor
 
-if upper_limit_of_range > 9 or upper_limit_of_range < 1 or upper_limit_of_range % 2 == 0:
+# if statement to check if the input was valid
+if upper_limit_of_range.lower() == 'end':
+    #terminates program if requested in input
+    print("The program has been terminated as requested.")
+    quit()
+elif upper_limit_of_range.isdigit() == False or int(upper_limit_of_range) > 9 or int(upper_limit_of_range) < 1 or int(upper_limit_of_range) % 2 == 0:
+    # uses default upper_limit_of_range (9) if the user_input was not valid
     upper_limit_of_range = 9
     print("As your input was not within the valid range, the pattern will be 9 lines long.")
     # creates a default version of the upper limit of the range in the for loop below and notifies user
 else:
     print(f"Thank you for choosing, the pattern will be {upper_limit_of_range} lines long.")
 
+# ensuring upper_limit_of_range is an int
+upper_limit_of_range = int(upper_limit_of_range)
 stars = "*" # sets the original string of stars with only 1 star in the string
 
 
