@@ -1,7 +1,25 @@
 # A program print different versions of a sentence input by the user.
 
-# request and save sentence input by the user
-str_manip = input("Please enter a sentence: ")
+#intro and stating how to exit program
+print("This is a program to manipulate a string you input, to exit the program, please type 'end': ")
+
+#function to request and save input sentence
+def request_sentence():
+    # request and save sentence input by the user
+    str_manip = input("Please enter a sentence: ")
+    #if statement to check that if end was input
+    if str_manip.lower() == 'end':
+        print("This program has been terminated as requested: ")
+        quit()
+    return str_manip
+
+# initialising str manip sentence and calling request sentence function
+str_manip = request_sentence()
+
+# while statement to request sentence again if the user didn't entered a sentence to avoid the program crashing when it requests str_manip[-1]
+while len(str_manip) == 0:
+    print("Your input was not valid.")
+    str_manip = request_sentence()
 
 # find and display length of user's sentence
 print(f"The length of your sentence is {len(str_manip)} characters long.")
