@@ -2,29 +2,49 @@
 
 print("This is a program to read a string and output it with alternating upper and lower case characters and words. To terminate the program, type 'end' when input is requested.")
 
-# requesting input from the user
-user_string = input("Please input your sentence: ")
-# checking if they requested for the program to be terminated.
-if user_string.lower().strip() == "end":
-    print("The program has been terminated as requested.")
-    quit()
-# requesting input from user until it is valid. Input is invalid if the string is empty or the string doesn't contain letters or letters and spaces
-# while not (user_string.isalpha() and user_string.find(" ")) or (user_string.isalpha() == False) or len(user_string) == 0:  # * original version*************************************
-while len(user_string) == 0: # * send help *
-    # break statements
-    if user_string.isalpha(): # * send help*
-        break
-    if (user_string.isalpha() and user_string.isspace()): # * I'm having trouble with this, it allows in numbers for some reason!!!
-        break
-    print("Your sentence must only include letters and spaces, please do not include punctuation.")
+def request_user_sentence():
+    # requesting input from the user
     user_string = input("Please input your sentence: ")
     # checking if they requested for the program to be terminated.
     if user_string.lower().strip() == "end":
         print("The program has been terminated as requested.")
         quit()
+    return user_string
+
+#function to check if the string is valid
+def is_string_valid(user_string):
+    # splits the string into a list of words
+    split_sentence = user_string.split()
+    # define invalid variable as 0. It will stay at this value unless there are invalid characters.
+    invalid = 0
+    # iterate over the list of words and add 1 to 
+    for word in split_sentence:
+        if word.isalpha() == False:
+            # reassigning invalid variable to 1 if any of the words have invalid characters
+            invalid = 1
+    # returns answer to whether string is valid
+    if invalid == 0:
+        return True # returns true if the user's string was never invalid
+    else:
+        return False # returns false if any of the words in the string were invalid
 
 
-# user_string = "I am learning to code"
+
+# requesting input from user until it is valid. Input is invalid if the string is empty or only has spaces or includes non-letter characters
+user_string = request_user_sentence()
+
+# loops unless the input is valid and prints out what is wrong with the input if input is invalid.
+while len(user_string.strip()) == 0 or is_string_valid(user_string) == False: 
+    if len(user_string) == 0:
+        print("You did not input anything so your input was not valid. Your sentence must include letters.")
+    elif len(user_string.strip()) == 0:
+        print("You must include letters in your sentence, spaces by themselves do not count as a sentence.")
+    else:
+        print("Your sentence must only include letters and spaces, please do not include punctuation.")
+    user_string = request_user_sentence()
+
+
+
 print(f"The original string: {user_string}.")
 
 # alternating character version
